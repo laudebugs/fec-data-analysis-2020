@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class findIndividualContributions2016 {
     public static void main(String[] args) throws FileNotFoundException {
-        File HillaryFile = new File("HillaryCommittees.txt");
-        File trumpFile = new File("TrumpCommittees.txt");
+        File HillaryFile = new File("candidateInfo/HillaryCommittees.txt");
+        File trumpFile = new File("candidateInfo/TrumpCommittees.txt");
 
         Scanner bsc = new Scanner(HillaryFile);
         Scanner tsc = new Scanner(trumpFile);

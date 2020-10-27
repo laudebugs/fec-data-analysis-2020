@@ -1,3 +1,21 @@
+"""
+This script splits the data into two dictionaries, one for each candidate
+and outputs them into json files in the following format:
+There are three predetermined keys: "RETIRE", "SELF" and "UNEMPLOYED"
+the rest of the script adds all the donations from individuals working for a certain company, in the following format:
+    "companyName":[totalNUmber, totalDonations]
+
+Therefore, the output files for each candidate: BidenOutput.json and TrumpOutput.json have the following format:
+{
+    "RETIRE":[totalNUmber, totalDonations],
+    "UNEMPLOYED":[totalNUmber, totalDonations],
+    "SELF":[totalNUmber, totalDonations],
+    "companyName":[totalNUmber, totalDonations]
+}
+
+"""
+
+
 import requests
 import re
 import time
@@ -6,8 +24,8 @@ import json
 
 
 # Get list of biden committees:
-bidenCommitteeFile = open("BidenCommittees.txt")
-trumpCommitteeFile = open("TrumpCommittees.txt")
+bidenCommitteeFile = open("candidateInfo/BidenCommittees.txt")
+trumpCommitteeFile = open("candidateInfo/TrumpCommittees.txt")
 
 #An array of biden and trump committees
 bidenCommittees = []
@@ -36,8 +54,8 @@ industries = defaultdict(list)
 
 #Open the file:
 indiDonationFile  = open("Contributions_by_individuals_2020/itcont.txt", "r")
-trumpOutputFile = open("trumpOutput.json","w")
-bidenOutputFile = open("BidenOutput.json","w")
+trumpOutputFile = open("output/trumpOutput.json","w")
+bidenOutputFile = open("outpur/BidenOutput.json","w")
 
 calls_remaining = 500
 waiting_time = 50

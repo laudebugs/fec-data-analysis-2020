@@ -6,8 +6,8 @@ from collections import defaultdict
 from bs4 import BeautifulSoup
 import lxml
 
-bidenOutputFile = open("BidenOutput.json", "r")
-trumpOutputFile = open("TrumpOutput.json", "r")
+bidenOutputFile = open("output/BidenOutput.json", "r")
+trumpOutputFile = open("output/TrumpOutput.json", "r")
 
 bidenOutput = json.loads(bidenOutputFile.readlines()[0])
 trumpOutput = json.loads(trumpOutputFile.readlines()[0])
@@ -15,9 +15,9 @@ trumpOutput = json.loads(trumpOutputFile.readlines()[0])
 APIcredentials = json.load(open("credentials.json","r"))
 companies = defaultdict(list)
 
-industryOutputFile = open("industries.json","r")
+industryOutputFile = open("output/industries.json","r")
 companies = json.load(industryOutputFile)
-industryOutputFile = open("industries.json","w")
+industryOutputFile = open("output/industries.json","a")
 
 # Get a list of companies
 api_calls = 15000
@@ -29,7 +29,7 @@ def getIndustries(dictionary, person):
     length = len(dictionary)
     i = 0
     modDict = list(dictionary.items())
-    for i in range(30621,length):
+    for i in range(3638,length):
         print(person +" : "+str(i)+"/"+str(length))
         companyName = modDict[i][0]
         if companyName not in companies:
@@ -39,7 +39,7 @@ def getIndustries(dictionary, person):
             #     continue
             # Call the google api to get the Wikipedia link of the company
             key1 = APIcredentials['googleKnowledgeGraphSearchAPI']['key1']
-            key2 = APIcredentials['googleKnowledgeGraphSearchAPI']['key1']
+            key2 = APIcredentials['googleKnowledgeGraphSearchAPI']['key2']
             wikiUrl = ""
             if(api_calls<100000):
                 wikiUrl = getWikiUrl(companyName, key1)
@@ -54,7 +54,8 @@ def getIndustries(dictionary, person):
                 continue
             print (industry)
             companies[companyName] = industry
-            json.dump(companies, industryOutputFile, indent = 4) 
+            industryOutputFile.write("\t\""+companyName+"\":"+"\""+industry+"\""+",\n")
+            # json.dump(companies, industryOutputFile, indent = 4) 
             # industryOutputFile.write(json.dumps(companies))
 
 def getDomain(companyName):
@@ -112,7 +113,7 @@ def getIndustryFromWikiLink(wikiUrl):
     industry = parent.td.a.text
     return industry
 
-getIndustries(trumpOutput, "trump")
+# getIndustries(trumpOutput, "trump")
 getIndustries(bidenOutput, "biden")
 
 industryOutputFile.write(json.dumps(companies))

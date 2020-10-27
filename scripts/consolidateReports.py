@@ -12,14 +12,14 @@ The file TrumpOutput.json and BidenOutput.json contain the details (in terms of 
 
 """
 # Load the files for each candidate
-bidenFile = open("BidenOutput.json", "r")
-trumpFile = open("TrumpOutput.json", "r")
+bidenFile = open("output/BidenOutput.json", "r")
+trumpFile = open("output/TrumpOutput.json", "r")
 
 bidenStats = json.loads(bidenFile.readlines()[0])
 trumpStats = json.loads(trumpFile.readlines()[0])
 
 #load the industries file
-industriesFile = open("industries.json", "r")
+industriesFile = open("output/industries.json", "r")
 industries = json.load(industriesFile)
 
 """
@@ -95,5 +95,5 @@ output['biden'] = {'TotalContributions':bidenTotalContributions,
                     'unemployedContributions':bidenStats['UNEMPLOYED']
                     }
 # Write the output to a file
-consolidatedOutput = open('consolidatedOutput.json','w')
+consolidatedOutput = open('output/consolidatedOutput.json','w')
 consolidatedOutput.write(json.dumps(output))

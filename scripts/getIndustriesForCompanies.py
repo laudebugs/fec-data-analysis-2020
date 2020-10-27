@@ -13,7 +13,6 @@ bidenOutput = json.loads(bidenOutputFile.readlines()[0])
 trumpOutput = json.loads(trumpOutputFile.readlines()[0])
 
 APIcredentials = json.load(open("credentials.json","r"))
-
 companies = defaultdict(list)
 
 industryOutputFile = open("industries.json","r")
@@ -30,7 +29,7 @@ def getIndustries(dictionary, person):
     length = len(dictionary)
     i = 0
     modDict = list(dictionary.items())
-    for i in range(15050,length):
+    for i in range(24103,length):
         print(person +" : "+str(i)+"/"+str(length))
         companyName = modDict[i][0]
         if companyName not in companies:
@@ -105,8 +104,11 @@ def getIndustryFromWikiLink(wikiUrl):
     parent = result.parent
     if parent==None:
         return None
+    if parent.td==None:
+        return None
     if parent.td.a==None:
         return None
+    
     industry = parent.td.a.text
     return industry
 

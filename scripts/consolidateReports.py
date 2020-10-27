@@ -13,7 +13,7 @@ The file TrumpOutput.json and BidenOutput.json contain the details (in terms of 
 """
 # Load the files for each candidate
 bidenFile = open("output/BidenOutput.json", "r")
-trumpFile = open("output/TrumpOutput.json", "r")
+trumpFile = open("output/trumpOutput.json", "r")
 
 bidenStats = json.loads(bidenFile.readlines()[0])
 trumpStats = json.loads(trumpFile.readlines()[0])
@@ -33,13 +33,13 @@ each entry in the both files contains:
 # Variables for trump stats
 trumpEmploymentStats = defaultdict(list)
 trumpIndustryShare = defaultdict(list)
-trumpTotalContributions = 0;
-trumpNumberOfContributions = 0;
+trumpTotalContributions = 0
+trumpNumberOfContributions = 0
 # Biden stats
 bidenEmploymentStats = defaultdict(list)
 bidenIndustryShare = defaultdict(list)
-bidenTotalContributions = 0;
-bidenNumberOfContributions = 0;
+bidenTotalContributions = 0
+bidenNumberOfContributions = 0
 
 # Get employment stats
 # For Trump

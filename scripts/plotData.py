@@ -6,8 +6,9 @@ We will plot several graphs to visualize the results
 3. A bar chart showing the top sectors that contributed to each candidate
 
 """
-import matplotlib.pyplot as plt 
-import collections from defaultdict
+import json
+import matplotlib.pyplot as plt
+from collections import defaultdict
 #import the output file
 consolidatedOutputFile = open('output/consolidatedOutput.json','r')
 results = json.load(consolidatedOutputFile)
@@ -15,22 +16,24 @@ results = json.load(consolidatedOutputFile)
 labels = 'employed', 'unemployed','retired'
 trumpUnemployed = results['trump']['unemployedContributions']
 trumpRetired = results['trump']['unemployedContributions']
-trumpEmployed = [results['trump']['numberOfContributions']-(trumpUnemployed[0]+trumpRetired[0]),results['trump']['TotalContributions']-(trumpUnemployed[1]+trumpRetired[1],]
+trumpEmployed = [results['trump']['numberOfContributions']-(trumpUnemployed[0]+trumpRetired[0]),results['trump']['TotalContributions']-(trumpUnemployed[1]+trumpRetired[1])]
 colors = ['#176E74','#FF7538','#504E4B']
 explode = (0,0,0.1)
 
 sizeByNoDonations = [trumpEmployed[0],trumpUnemployed[0],trumpUnemployed[0]]
 sizeByDonationAmount = [trumpEmployed[1],trumpUnemployed[1],trumpUnemployed[1]]
-plt.pie(sizeByDonationAmount,explode=explode,labels=labels, colors=colors)
-plt2.pie(sizeByNoDonations,explode=explode,labels=labels, colors=colors)
+# plt.pie(sizeByDonationAmount,explode=explode,labels=labels, colors=colors, autopct='%1.1f%%')
+plt.pie(sizeByNoDonations,explode=explode,labels=labels, colors=colors,autopct='%1.1f%%')
 
-autopct='%1.1f%%', shadow=True, startangle=140)
+# autopct='%1.1f%%', shadow=True, startangle=140
 
 plt.axis('equal')
 plt.show()
 
-plt2.axis('equal')
-plt2.show()
+plt.axis('equal')
+plt.show()
+
+"""
 
 # show which industries gave the most to each candidate
 trumpIndustries = (results['trump']['employmentStats'])
@@ -42,3 +45,5 @@ sort_dict= dict(sorted(trumpIndustries.items(), key=lambda item: item[1][1]))
 print("Sorted Dictionary by value: ", sort_dict)
 
 # The top elements will be at the bottom
+
+"""

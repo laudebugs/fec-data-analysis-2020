@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import lxml
 
 bidenOutputFile = open("output/BidenOutput.json", "r")
-trumpOutputFile = open("output/TrumpOutput.json", "r")
+trumpOutputFile = open("output/trumpOutput.json", "r")
 
 bidenOutput = json.loads(bidenOutputFile.readlines()[0])
 trumpOutput = json.loads(trumpOutputFile.readlines()[0])
@@ -29,7 +29,7 @@ def getIndustries(dictionary, person):
     length = len(dictionary)
     i = 0
     modDict = list(dictionary.items())
-    for i in range(13817,length):
+    for i in range(14118,length):
         print(person +" : "+str(i)+"/"+str(length))
         companyName = modDict[i][0]
         if companyName not in companies:

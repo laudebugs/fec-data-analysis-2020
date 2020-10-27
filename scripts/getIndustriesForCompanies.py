@@ -20,7 +20,7 @@ companies = json.load(industryOutputFile)
 industryOutputFile = open("output/industries.json","a")
 
 # Get a list of companies
-api_calls = 15000
+api_calls = 0
 def getIndustries(dictionary, person):
     """
     docstring
@@ -29,7 +29,7 @@ def getIndustries(dictionary, person):
     length = len(dictionary)
     i = 0
     modDict = list(dictionary.items())
-    for i in range(3638,length):
+    for i in range(13817,length):
         print(person +" : "+str(i)+"/"+str(length))
         companyName = modDict[i][0]
         if companyName not in companies:
@@ -38,8 +38,8 @@ def getIndustries(dictionary, person):
             # if domain== None:
             #     continue
             # Call the google api to get the Wikipedia link of the company
-            key1 = APIcredentials['googleKnowledgeGraphSearchAPI']['key1']
-            key2 = APIcredentials['googleKnowledgeGraphSearchAPI']['key2']
+            key1 = APIcredentials['googleKnowledgeGraphSearchAPI']['key2']
+            key2 = APIcredentials['googleKnowledgeGraphSearchAPI']['key1']
             wikiUrl = ""
             if(api_calls<100000):
                 wikiUrl = getWikiUrl(companyName, key1)

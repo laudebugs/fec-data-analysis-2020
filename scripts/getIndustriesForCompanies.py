@@ -29,7 +29,7 @@ def getIndustries(dictionary, person):
     length = len(dictionary)
     i = 0
     modDict = list(dictionary.items())
-    for i in range(24103,length):
+    for i in range(30621,length):
         print(person +" : "+str(i)+"/"+str(length))
         companyName = modDict[i][0]
         if companyName not in companies:

@@ -4,22 +4,6 @@ import time
 from collections import defaultdict
 import json
 
-# url = "https://crunchbase-crunchbase-v1.p.rapidapi.com/odm-organizations"
-# querystring = {"name":"MARATHON PETROLEUM"}
-# headers = {
-#     'x-rapidapi-host': "crunchbase-crunchbase-v1.p.rapidapi.com",
-#     'x-rapidapi-key': "f37b36231bmsh32420f705ff299ep1d421djsn4a85620980b0"
-#     }
-# response = requests.request("GET", url, headers=headers, params=querystring)
-# print(response.text)
-
-
-
-# upleadAPIUrl = "https://api.uplead.com/v2/company-search"
-# headers2 = {
-#     "Authorization": "e68175146818d4fcdafdd1a61fa027de"
-# }
-
 
 # Get list of biden committees:
 bidenCommitteeFile = open("BidenCommittees.txt")

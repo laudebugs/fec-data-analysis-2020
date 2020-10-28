@@ -86,13 +86,15 @@ output['trump'] = {'TotalContributions':trumpTotalContributions,
                     'numberOfContributions':trumpNumberOfContributions,
                     'employmentStats':trumpEmploymentStats,
                     'retiredContributions':trumpStats['RETIRE'],
-                    'unemployedContributions':trumpStats['UNEMPLOYED']
+                    'unemployedContributions':trumpStats['UNEMPLOYED'],
+                    'unspecifiedContributions':trumpStats['UNNSPECIFIED']
                     }
 output['biden'] = {'TotalContributions':bidenTotalContributions,
                     'numberOfContributions':bidenNumberOfContributions,
                     'employmentStats':bidenEmploymentStats,
                     'retiredContributions':bidenStats['RETIRE'],
-                    'unemployedContributions':bidenStats['UNEMPLOYED']
+                    'unemployedContributions':bidenStats['UNEMPLOYED'],
+                    'unspecifiedContributions':bidenStats['UNNSPECIFIED']
                     }
 # Write the output to a file
 consolidatedOutput = open('output/consolidatedOutput.json','w')

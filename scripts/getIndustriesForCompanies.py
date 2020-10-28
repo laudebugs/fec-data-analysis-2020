@@ -9,8 +9,8 @@ import lxml
 bidenOutputFile = open("output/BidenOutput.json", "r")
 trumpOutputFile = open("output/trumpOutput.json", "r")
 
-bidenOutput = json.loads(bidenOutputFile.readlines()[0])
-trumpOutput = json.loads(trumpOutputFile.readlines()[0])
+bidenOutput = json.loads(bidenOutputFile.read())
+trumpOutput = json.loads(trumpOutputFile.read())
 
 APIcredentials = json.load(open("credentials.json","r"))
 companies = defaultdict(list)
@@ -111,9 +111,10 @@ def getIndustryFromWikiLink(wikiUrl):
         return None
     
     industry = parent.td.a.text
+    print(parent)
     return industry
 
-# print(getDomain('AUTO INDUSTRY'))
+# print(getDomain('WESTERN MOTORS'))
 getIndustries(trumpOutput, "trump")
 getIndustries(bidenOutput, "biden")
 

@@ -39,6 +39,7 @@ To match a company to an industry, I considered using an API such as [Uplead](ht
 <br/> 
 💡 One thought that came to mind is that this Knowledge Graph may be how Voice assistants look things up on the internet and perhaps return a simple description of, for instance, who Kendrick Lamar is. Worth looking into sometime.
 <br/>
+<br/>
 
 If a request to the Knowledge Graph Search AOI returns a link to the Wikipedia page for the company, I scraped the wikipedia page for the `Industry` of the company contained within an element (if it exists) such as:
 ```html

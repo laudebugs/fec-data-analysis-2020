@@ -53,9 +53,9 @@ industries = defaultdict(list)
 # Make 500 api calls per minute
 
 #Open the file:
-indiDonationFile  = open("Contributions_by_individuals_2020/itcont.txt", "r")
+indiDonationFile  = open("indiv20/itcont.txt", "r")
 trumpOutputFile = open("output/trumpOutput.json","w")
-bidenOutputFile = open("outpur/BidenOutput.json","w")
+bidenOutputFile = open("output/BidenOutput.json","w")
 
 calls_remaining = 500
 waiting_time = 50
@@ -108,8 +108,6 @@ while True:
     donation_amount = int(details[14])
     company = details[11]
 
-    if len(company)==0:
-        continue
 
     if company.find(",")>0:
         company = company[:company.find(",")]
@@ -118,10 +116,19 @@ while True:
     occupation = details[12]
 
     if committee in trumpCommittees:
+        if len(company)==0:
+            if "UNSPECIFIED" in trumpDonations:
+                trumpDonations["UNSPECIFIED"][0] = trumpDonations["UNSPECIFIED"][0]+1
+                trumpDonations["UNSPECIFIED"][1] = trumpDonations["UNSPECIFIED"][1]+donation_amount
+            else:
+                trumpDonations["UNSPECIFIED"] = [0,0]
+                trumpDonations["UNSPECIFIED"][0] = trumpDonations["UNSPECIFIED"][0]+1
+                trumpDonations["UNSPECIFIED"][1] = trumpDonations["UNSPECIFIED"][1]+donation_amount
+            
         # Check the amount of donation
 
         # if company in list of companies, add the donation amount
-        if company == "SELF" or "SELF EMPLOY" in company or "SELF-EMPLOY" in company:
+        elif company == "SELF" or "SELF EMPLOY" in company or "SELF-EMPLOY" in company:
             if "SELF" in trumpDonations:
                 trumpDonations["SELF"][0] = trumpDonations["SELF"][0]+1
                 trumpDonations["SELF"][1] = trumpDonations["SELF"][1]+donation_amount
@@ -154,10 +161,19 @@ while True:
                 trumpDonations[company][0] = trumpDonations[company][0]+1
                 trumpDonations[company][1] = trumpDonations[company][1]+donation_amount
     elif committee in bidenCommittees:
+        if len(company)==0:
+            if "UNSPECIFIED" in bidenDonations:
+                bidenDonations["UNSPECIFIED"][0] = bidenDonations["UNSPECIFIED"][0]+1
+                bidenDonations["UNSPECIFIED"][1] = bidenDonations["UNSPECIFIED"][1]+donation_amount
+            else:
+                bidenDonations["UNSPECIFIED"] = [0,0]
+                bidenDonations["UNSPECIFIED"][0] = bidenDonations["UNSPECIFIED"][0]+1
+                bidenDonations["UNSPECIFIED"][1] = bidenDonations["UNSPECIFIED"][1]+donation_amount
+            
         # Check the amount of donation
 
         # if company in list of companies, add the donation amount
-        if company == "SELF" or "SELF EMPLOY" in company or "SELF-EMPLOY" in company:
+        elif company == "SELF" or "SELF EMPLOY" in company or "SELF-EMPLOY" in company:
             if "SELF" in bidenDonations:
                 bidenDonations["SELF"][0] = bidenDonations["SELF"][0]+1
                 bidenDonations["SELF"][1] = bidenDonations["SELF"][1]+donation_amount

@@ -37,7 +37,7 @@ public class findIndividualContributions {
         int trumpDonors = 0;
         int trumpContributions = 0;
 
-        String datapath = "Contributions_by_individuals_2020/itcont.txt";
+        String datapath = "indiv20/itcont.txt";
 
         File folder = new File(datapath);
         File[] listOfFiles = folder.listFiles();

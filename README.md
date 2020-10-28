@@ -18,6 +18,6 @@ The project aimed to determine the total sum of contributions to the candidate c
 3. What is the share of employed v. unemployed v retired people who donated to each candidate
 
 ## Methodology
-
+The individual donations file contains donations from 
 
 <sup>1</sup>: Individual Contributions ([FEC](https://www.fec.gov/introduction-campaign-finance/how-to-research-public-records/individual-contributions/))

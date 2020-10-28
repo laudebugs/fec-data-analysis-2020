@@ -16,22 +16,24 @@ results = json.load(consolidatedOutputFile)
 
 
 # A pie chart for each candidate
-labels = 'employed','retired', 'unemployed'
+labels = 'employed','retired', 'unemployed','unspecified'
 trumpUnemployed = results['trump']['unemployedContributions']
 trumpRetired = results['trump']['retiredContributions']
+trumpUnspecified = results['trump']['unspecifiedContributions']
 trumpEmployed = [results['trump']['numberOfContributions']-(trumpUnemployed[0]+trumpRetired[0]),results['trump']['TotalContributions']-(trumpUnemployed[1]+trumpRetired[1])]
-trumpSizeByNoDonations = [trumpEmployed[0],trumpRetired[0],trumpUnemployed[0]]
-trumpSizeByDonationAmount = [trumpEmployed[1],trumpRetired[1],trumpUnemployed[1]]
+trumpSizeByNoDonations = [trumpEmployed[0],trumpRetired[0],trumpUnemployed[0], trumpUnspecified[0]]
+trumpSizeByDonationAmount = [trumpEmployed[1],trumpRetired[1],trumpUnemployed[1],trumpUnspecified[1]]
 
 #Get Biden Stats
 bidenUnemployed = results['biden']['unemployedContributions']
 bidenRetired = results['biden']['retiredContributions']
+bidenUnspecified = results['biden']['unspecifiedContributions']
 bidenEmployed = [results['biden']['numberOfContributions']-(bidenUnemployed[0]+bidenRetired[0]),results['biden']['TotalContributions']-(bidenUnemployed[1]+bidenRetired[1])]
-bidenSizeByNoDonations = [bidenEmployed[0],bidenRetired[0],bidenUnemployed[0]]
-bidenSizeByDonationAmount = [bidenEmployed[1],bidenRetired[1],bidenUnemployed[1]]
+bidenSizeByNoDonations = [bidenEmployed[0],bidenRetired[0],bidenUnemployed[0],bidenUnspecified[0]]
+bidenSizeByDonationAmount = [bidenEmployed[1],bidenRetired[1],bidenUnemployed[1],bidenUnspecified[1]]
 
-colors = ['#5E9918','#D3B1C2','#F3952F']
-explode = (0.1,0.1,0.1)
+colors = ['#5E9918','#D3B1C2','#F3952F','#72D1CB']
+explode = (0.1,0.1,0.2,0)
 
 # wedge properties
 wp = {'linewidth':1, 'edgecolor':"grey"}
@@ -69,7 +71,7 @@ ax2.set_title("BIDEN FOR PRESIDENT (C00703975)")
 #             title="Donation Amount to DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)",
 #             loc="center left",
 #             bbox_to_anchor =(1,0,0.5,1))
-plt.setp(autotexts, size = 8, weight ="bold") 
+# plt.setp(autotexts, size = 8, weight ="bold") 
   
 # show plot 
 # plt.show() 

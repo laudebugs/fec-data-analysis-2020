@@ -27450,8 +27450,9 @@
 	"NEW CAPITAL MANAGEMENT": "Financial services",
 	"MARQUIS DESIGN GROUP": "Hospitality",
 	"BLUE ORIGIN LLC": "Aerospace industry",
-    "FFL PARTNERS": "Private Equity"
-}	"APPLEGATE ":"Retail",
+    "FFL PARTNERS": "Private Equity",
+	"APPLEGATE ":"Retail",
 	"PARKER HANNIFIN":"Writing instruments",
 	"ACS":"Internet of Things",
-	"SIA":"Computer hardware",
+    "SIA":"Computer hardware"
+}

@@ -113,7 +113,7 @@ def getIndustryFromWikiLink(wikiUrl):
     industry = parent.td.a.text
     return industry
 
-print(getDomain('VOLT INFORMATION SCIENCES'))
+print(getDomain('AUTO INDUSTRY'))
 # getIndustries(trumpOutput, "trump")
 # getIndustries(bidenOutput, "biden")
 

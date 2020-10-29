@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class findIndividualContributions {
+public class FindIndividualContributions {
     public static void main(String[] args) throws FileNotFoundException {
         File bidenFile = new File("candidateInfo/BidenCommittees.txt");
         File trumpFile = new File("candidateInfo/TrumpCommittees.txt");
@@ -40,45 +40,32 @@ public class findIndividualContributions {
         String datapath = "indiv20/itcont.txt";
 
         File folder = new File(datapath);
-        File[] listOfFiles = folder.listFiles();
 
-
+        File file = new File(datapath);
+        try{
+            Scanner sc = new Scanner(file);
+            while( sc.hasNextLine()){
+                    line = sc.nextLine();
+                    String [] details = line.split("[|]");
+                    
+                    String committee = details[0];
+                    
+                    if(trumpCommittees.contains(committee)){
+                        trumpDonors = Integer.parseInt(details[14])>0?trumpDonors+1:trumpDonors-1;
+                        trumpContributions += Integer.parseInt(details[14]);
+                    }
+                    else if((bidenCommittees.contains(committee))|| details[19].contains("EARMARKED FOR BIDEN FOR PRESIDENT")){
+                        bidenDonors = Integer.parseInt(details[14])>0?bidenDonors+1:bidenDonors-1;
+                        bidenContributions += Integer.parseInt(details[14]);
+                        
+                    }
+                    
+            }
+        }
+        catch (FileNotFoundException e){
+            System.out.print(e);
+        }
         
-        //Loop through the files for records in 2020
-        // int record = 0;
-
-        /*
-         * Looking at donations from December 30th 2019 to August 31st 2020
-         * 
-         */
-        // for(int i=1; i<listOfFiles.length-1; i++){
-            File file = new File(datapath);
-            String s;
-            try{
-                Scanner sc = new Scanner(file);
-                while( sc.hasNextLine()){
-                    // record++;
-                        line = sc.nextLine();
-                        String [] details = line.split("[|]");
-                        
-                        String committee = details[0];
-                        
-                        if(trumpCommittees.contains(committee)){
-                            trumpDonors = Integer.parseInt(details[14])>0?trumpDonors+1:trumpDonors-1;
-                            trumpContributions += Integer.parseInt(details[14]);
-                        }
-                        else if((bidenCommittees.contains(committee))|| details[19].contains("EARMARKED FOR BIDEN FOR PRESIDENT")){
-                            bidenDonors = Integer.parseInt(details[14])>0?bidenDonors+1:bidenDonors-1;
-                            bidenContributions += Integer.parseInt(details[14]);
-                            
-                        }
-                        
-                }
-            }
-            catch (FileNotFoundException e){
-                System.out.print(e);
-            }
-        // }
         System.out.println("Donations from 2019 through to August 31st 2020:");
         System.out.printf("Total Biden Individual donations: %,d %n",bidenDonors);
         System.out.printf("Total Sum of Contributions to Biden: $%,d %n", bidenContributions);

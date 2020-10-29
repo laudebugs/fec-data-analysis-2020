@@ -21,12 +21,12 @@ while True:
     occupation = data[12]
     if(data[0]==trumpCommittee):
         if occupation in trumpCareers:
-            trumpCareers[occupation] = [trumpCareers[occupation]+1,trumpCareers[occupation]+int(data[14])]
+            trumpCareers[occupation] = [trumpCareers[occupation][0]+1,trumpCareers[occupation][1]+int(data[14])]
         else:
             trumpCareers[occupation] = [1,int(data[14])]
     elif data[0]==bidenCommittee or 'EARMARKED FOR BIDEN FOR PRESIDENT' in data[19]:
-        if occupation in trumpCareers:
-            bidenCareers[occupation] = [bidenCareers[occupation]+1,bidenCareers[occupation]+int(data[14])]
+        if occupation in bidenCareers:
+            bidenCareers[occupation] = [bidenCareers[occupation][0]+1,bidenCareers[occupation][1]+int(data[14])]
         else:
             bidenCareers[occupation] = [1,int(data[14])]
 

@@ -15,8 +15,8 @@ The file TrumpOutput.json and BidenOutput.json contain the details (in terms of 
 bidenFile = open("output/BidenOutput.json", "r")
 trumpFile = open("output/trumpOutput.json", "r")
 
-bidenStats = json.loads(bidenFile.readlines()[0])
-trumpStats = json.loads(trumpFile.readlines()[0])
+bidenStats = json.load(bidenFile)
+trumpStats = json.load(trumpFile)
 
 #load the industries file
 industriesFile = open("output/industries.json", "r")
@@ -47,7 +47,7 @@ for key in trumpStats:
     trumpNumberOfContributions += trumpStats[key][0]
     trumpTotalContributions += trumpStats[key][1]
     # Stats by industry
-    if key in industries:
+    if key.upper() in industries:
         if industries[key] in trumpEmploymentStats:
             trumpEmploymentStats[industries[key]][0]+=trumpStats[key][0]
             trumpEmploymentStats[industries[key]][1]+=trumpStats[key][1]
@@ -65,7 +65,7 @@ for key in bidenStats:
     bidenNumberOfContributions += bidenStats[key][0]
     bidenTotalContributions += bidenStats[key][1]
     # Stats by industry
-    if key in industries:
+    if key.upper() in industries:
         if industries[key] in bidenEmploymentStats:
             bidenEmploymentStats[industries[key]][0]+=bidenStats[key][0]
             bidenEmploymentStats[industries[key]][1]+=bidenStats[key][1]

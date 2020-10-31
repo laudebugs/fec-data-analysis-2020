@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FindIndividualContributions {
+public class findIndividualContributions {
     public static void main(String[] args) throws FileNotFoundException {
         File bidenFile = new File("candidateInfo/BidenCommittees.txt");
         File trumpFile = new File("candidateInfo/TrumpCommittees.txt");

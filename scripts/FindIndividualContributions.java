@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class findIndividualContributions {
     public static void main(String[] args) throws FileNotFoundException {
-        File bidenFile = new File("candidateInfo/BidenCommittees.txt");
+        File bidenFile = new File("candidateInfo/HillaryCommittees.txt");
         File trumpFile = new File("candidateInfo/TrumpCommittees.txt");
 
         Scanner bsc = new Scanner(bidenFile);
@@ -32,12 +32,12 @@ public class findIndividualContributions {
 
         // Read files for individual donors
         int bidenDonors = 0;
-        int bidenContributions = 0;
+        double bidenContributions = 0.0;
 
         int trumpDonors = 0;
-        int trumpContributions = 0;
+        double trumpContributions = 0.0;
 
-        String datapath = "indiv20/itcont.txt";
+        String datapath = "indiv16/itcont.txt";
 
         File folder = new File(datapath);
 
@@ -52,11 +52,11 @@ public class findIndividualContributions {
                     String earmark = details[15];
                     if(trumpCommittees.contains(committee) || trumpCommittees.contains(earmark)){
                         trumpDonors = Integer.parseInt(details[14])>0?trumpDonors+1:trumpDonors-1;
-                        trumpContributions += Integer.parseInt(details[14]);
+                        trumpContributions += Double.parseDouble(details[14]);
                     }
                     else if((bidenCommittees.contains(committee))|| bidenCommittees.contains(earmark)){
                         bidenDonors = Integer.parseInt(details[14])>0?bidenDonors+1:bidenDonors-1;
-                        bidenContributions += Integer.parseInt(details[14]);
+                        bidenContributions += Double.parseDouble(details[14]);
                         
                     }
                     
@@ -67,12 +67,12 @@ public class findIndividualContributions {
         }
         
         System.out.println("Donations from 2019 through to August 31st 2020:");
-        System.out.printf("Total Biden Individual donations: %,d %n",bidenDonors);
-        System.out.printf("Total Sum of Contributions to Biden: $%,d %n", bidenContributions);
+        System.out.printf("Total Hillary Individual donations: %,d %n",bidenDonors);
+        System.out.printf("Total Sum of Contributions to Hillary: $%,f %n", bidenContributions);
         System.out.printf("Average Contribution: $%,.2f %n", (bidenContributions*1.0)/(bidenDonors*1.0));
         System.out.println();
         System.out.printf("Total Trump Individual donations: %,d %n",trumpDonors);
-        System.out.printf("Total Sum of Contributions to Trump: $%,d %n",trumpContributions);
+        System.out.printf("Total Sum of Contributions to Trump: $%,f %n",trumpContributions);
         System.out.printf("Average Contribution: $%,.2f %n", (trumpContributions*1.0)/(trumpDonors*1.0));
 
 

@@ -17,26 +17,26 @@ careerOutput = json.load(open('output/donationsbyCareer.json','r'))
 results = json.load(consolidatedOutputFile)
 
 trumpTitle = "DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)"
-bidenTitle = "BIDEN FOR PRESIDENT (C00703975)"
+bidenTitle = "BIDEN FOR PRESIDENT (C00431569)"
 # A pie chart for each candidate
-labels = 'employed','retired', 'unemployed','unspecified'
+labels = 'employed','unemployed','retired', 'unspecified'
 trumpUnemployed = results['trump']['unemployedContributions']
 trumpRetired = results['trump']['retiredContributions']
 trumpUnspecified = results['trump']['unspecifiedContributions']
 trumpEmployed = [results['trump']['numberOfContributions']-(trumpUnemployed[0]+trumpRetired[0]),results['trump']['TotalContributions']-(trumpUnemployed[1]+trumpRetired[1])]
-trumpSizeByNoDonations = [trumpEmployed[0],trumpRetired[0],trumpUnemployed[0], trumpUnspecified[0]]
-trumpSizeByDonationAmount = [trumpEmployed[1],trumpRetired[1],trumpUnemployed[1],trumpUnspecified[1]]
+trumpSizeByNoDonations = [trumpEmployed[0],trumpUnemployed[0],trumpRetired[0], trumpUnspecified[0]]
+trumpSizeByDonationAmount = [trumpEmployed[1],trumpUnemployed[1],trumpRetired[1],trumpUnspecified[1]]
 
 #Get Biden Stats
-bidenUnemployed = results['biden']['unemployedContributions']
-bidenRetired = results['biden']['retiredContributions']
-bidenUnspecified = results['biden']['unspecifiedContributions']
-bidenEmployed = [results['biden']['numberOfContributions']-(bidenUnemployed[0]+bidenRetired[0]),results['biden']['TotalContributions']-(bidenUnemployed[1]+bidenRetired[1])]
-bidenSizeByNoDonations = [bidenEmployed[0],bidenRetired[0],bidenUnemployed[0],bidenUnspecified[0]]
-bidenSizeByDonationAmount = [bidenEmployed[1],bidenRetired[1],bidenUnemployed[1],bidenUnspecified[1]]
+bidenUnemployed = results['hillary']['unemployedContributions']
+bidenRetired = results['hillary']['retiredContributions']
+bidenUnspecified = results['hillary']['unspecifiedContributions']
+bidenEmployed = [results['hillary']['numberOfContributions']-(bidenUnemployed[0]+bidenRetired[0]),results['hillary']['TotalContributions']-(bidenUnemployed[1]+bidenRetired[1])]
+bidenSizeByNoDonations = [bidenEmployed[0],bidenUnemployed[0],bidenRetired[0],bidenUnspecified[0]]
+bidenSizeByDonationAmount = [bidenEmployed[1],bidenUnemployed[1],bidenRetired[1],bidenUnspecified[1]]
 
 colors = ['#5E9918','#D3B1C2','#F3952F','#72D1CB']
-explode = (0.1,0.1,0.2,0)
+explode = (0.1,0.1,0.1,0.1)
 
 # wedge properties
 wp = {'linewidth':1, 'edgecolor':"grey"}
@@ -51,18 +51,19 @@ fig.subtitle = "Donations Totals Amount"
 wedges, texts, autotexts = ax1.pie(trumpSizeByDonationAmount,
                                 autopct = lambda pct: func(pct, trumpSizeByDonationAmount), 
                                 explode=explode,
-                                labels = labels,
                                 shadow=True,
                                 colors=colors,
                                 startangle=0,
                                 wedgeprops = wp,
                                 textprops = dict(color ="#00221C"))
 ax1.set_title(trumpTitle) 
-
+ax1.legend(wedges, labels,
+            title="key",
+            loc="center left",
+            bbox_to_anchor =(1,0,0.5,1))
 wedges, texts, autotexts = ax2.pie(bidenSizeByDonationAmount,
                                 autopct = lambda pct: func(pct, bidenSizeByDonationAmount), 
                                 explode=explode,
-                                labels = labels,
                                 shadow=True,
                                 colors=colors,
                                 startangle=0,
@@ -82,7 +83,7 @@ ax2.set_title(bidenTitle)
 
 # show which industries gave the most to each candidate
 trumpIndustries = (results['trump']['employmentStats'])
-bidenIndustries = (results['biden']['employmentStats'])
+bidenIndustries = (results['hillary']['employmentStats'])
 
 # Sort based on amount
 trumpIndustries= (sorted(trumpIndustries.items(), key=lambda item: item[1][1], reverse=True))
@@ -111,6 +112,7 @@ wedges, texts, autotexts = ax1.pie(trumpTop10Amounts,
                                 textprops = dict(color ="#00221C"))
 ax1.set_title("DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)") 
 
+
 wedges, texts, autotexts = ax2.pie(bidenTop10Amounts,
                                 autopct = lambda pct: func(pct, bidenTop10Amounts), 
                                 labels = bidenTop10,
@@ -120,7 +122,7 @@ wedges, texts, autotexts = ax2.pie(bidenTop10Amounts,
                                 textprops = dict(color ="#00221C"))
 ax2.set_title(bidenTitle) 
 
-plt.setp(autotexts, size = 8, weight ="bold") 
+plt.setp(autotexts, size = 12, weight ="bold") 
   
 # show plot 
 # plt.show() 
@@ -129,7 +131,7 @@ plt.setp(autotexts, size = 8, weight ="bold")
 
 # Plot by top Careers
 trumpCareers = careerOutput['trump']
-bidenCareers = careerOutput['biden']
+bidenCareers = careerOutput['hillary']
 
 # Sort based on amount
 trumpCareers= (sorted(trumpCareers.items(), key=lambda item: item[1][1], reverse=True))
@@ -168,12 +170,8 @@ wedges, texts, autotexts = ax3.pie(trumpTopCareers,
                                 wedgeprops = wp,
                                 textprops = dict(color ="#00221C"))
 ax3.set_title(trumpTitle) 
-# ax3.legend(wedges, trumpTopCareerLabels,
-#             title=trumpTitle,
-#             loc="center left",
-#             bbox_to_anchor =(1,0,0.5,1))
 
-plt.setp(autotexts, size = 8, weight ="bold") 
+plt.setp(autotexts, size = 12, weight ="bold") 
   
 wedges, texts, autotexts = ax4.pie(bidenTopCareers,
                                 autopct = lambda pct: func(pct, bidenTopCareers), 
@@ -184,7 +182,7 @@ wedges, texts, autotexts = ax4.pie(bidenTopCareers,
                                 textprops = dict(color ="#00221C"))
 ax4.set_title(bidenTitle) 
 
-plt.setp(autotexts, size = 8, weight ="bold") 
+plt.setp(autotexts, size = 12, weight ="bold") 
 
 ax4.set_title(bidenTitle) 
 # ax4.legend(wedges, bidenTopCareerLabels,

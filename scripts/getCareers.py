@@ -19,12 +19,12 @@ while True:
         break
     data = line.split("|")
     occupation = data[12]
-    if(data[0]==trumpCommittee):
+    if(data[0]==trumpCommittee or data[15]==trumpCommittee):
         if occupation in trumpCareers:
             trumpCareers[occupation] = [trumpCareers[occupation][0]+1,trumpCareers[occupation][1]+int(data[14])]
         else:
             trumpCareers[occupation] = [1,int(data[14])]
-    elif data[0]==bidenCommittee or 'EARMARKED FOR BIDEN FOR PRESIDENT' in data[19]:
+    elif data[0]==bidenCommittee or data[15]==bidenCommittee:
         if occupation in bidenCareers:
             bidenCareers[occupation] = [bidenCareers[occupation][0]+1,bidenCareers[occupation][1]+int(data[14])]
         else:

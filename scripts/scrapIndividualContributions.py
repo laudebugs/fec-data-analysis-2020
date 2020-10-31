@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import lxml
 import requests
 import json
+import wait_response
+from wait_response import wait_response_status
+
 
 # Get the links to the contributions for each month
 bidenSource = json.load(open("data/bidenReports.json"))
@@ -15,7 +18,10 @@ for year in bidenSource:
         if 'link' in bidenSource[year][str(month)]:
             # Get the link
             link = bidenSource[year][str(month)]['link']
-            source = requests.get(link,timeout=300).text;
+            # Make 2 attempts to get status=UP, trying every 1 seconds.
+            respCode = wait_response_status(link, 2, 1, 'UP')
+            print(respCode) # 0 if success or else, 1
+            # source = requests.get(link,timeout=30000).text;
 
             soup = BeautifulSoup(source, 'lxml');
             

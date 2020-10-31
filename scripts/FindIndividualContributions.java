@@ -49,12 +49,12 @@ public class findIndividualContributions {
                     String [] details = line.split("[|]");
                     
                     String committee = details[0];
-                    
-                    if(trumpCommittees.contains(committee)){
+                    String earmark = details[15];
+                    if(trumpCommittees.contains(committee) || trumpCommittees.contains(earmark)){
                         trumpDonors = Integer.parseInt(details[14])>0?trumpDonors+1:trumpDonors-1;
                         trumpContributions += Integer.parseInt(details[14]);
                     }
-                    else if((bidenCommittees.contains(committee))|| details[19].contains("EARMARKED FOR BIDEN FOR PRESIDENT")){
+                    else if((bidenCommittees.contains(committee))|| bidenCommittees.contains(earmark)){
                         bidenDonors = Integer.parseInt(details[14])>0?bidenDonors+1:bidenDonors-1;
                         bidenContributions += Integer.parseInt(details[14]);
                         

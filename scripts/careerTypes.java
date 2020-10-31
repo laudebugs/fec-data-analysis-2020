@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class careerTypes {
     public static void main(String[] args) throws FileNotFoundException {
-        File bidenFile = new File("candidateInfo/BidenCommittees.txt");
+        File bidenFile = new File("candidateInfo/HillaryCommittees.txt");
         File trumpFile = new File("candidateInfo/TrumpCommittees.txt");
 
         Scanner bsc = new Scanner(bidenFile);
@@ -31,7 +31,7 @@ public class careerTypes {
         int trumpDonors = 0;
         int trumpContributions = 0;
 
-        String datapath = "indiv20/itcont.txt";
+        String datapath = "indiv16/itcont.txt";
 
         
         File file = new File(datapath);

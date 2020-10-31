@@ -12,9 +12,12 @@ import numpy as np
 from collections import defaultdict
 #import the output file
 consolidatedOutputFile = open('output/consolidatedOutput.json','r')
+careerOutput = json.load(open('output/donationsbyCareer.json','r'))
+
 results = json.load(consolidatedOutputFile)
 
-
+trumpTitle = "DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)"
+bidenTitle = "BIDEN FOR PRESIDENT (C00703975)"
 # A pie chart for each candidate
 labels = 'employed','retired', 'unemployed','unspecified'
 trumpUnemployed = results['trump']['unemployedContributions']
@@ -54,7 +57,7 @@ wedges, texts, autotexts = ax1.pie(trumpSizeByDonationAmount,
                                 startangle=0,
                                 wedgeprops = wp,
                                 textprops = dict(color ="#00221C"))
-ax1.set_title("DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)") 
+ax1.set_title(trumpTitle) 
 
 wedges, texts, autotexts = ax2.pie(bidenSizeByDonationAmount,
                                 autopct = lambda pct: func(pct, bidenSizeByDonationAmount), 
@@ -65,7 +68,7 @@ wedges, texts, autotexts = ax2.pie(bidenSizeByDonationAmount,
                                 startangle=0,
                                 wedgeprops = wp,
                                 textprops = dict(color ="#00221C"))
-ax2.set_title("BIDEN FOR PRESIDENT (C00703975)") 
+ax2.set_title(bidenTitle) 
 
 # ax.legend(wedges, labels,
 #             title="Donation Amount to DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)",
@@ -115,38 +118,78 @@ wedges, texts, autotexts = ax2.pie(bidenTop10Amounts,
                                 startangle=0,
                                 wedgeprops = wp,
                                 textprops = dict(color ="#00221C"))
-ax2.set_title("BIDEN FOR PRESIDENT (C00703975)") 
+ax2.set_title(bidenTitle) 
 
 plt.setp(autotexts, size = 8, weight ="bold") 
   
 # show plot 
-plt.show() 
-"""
-def func(pct, allvalues): 
-    absolute = int(pct / 100.*np.sum(allvalues)) 
-    return "{:.1f}%\n${:,d}".format(pct, absolute) 
-# creating plot
+# plt.show() 
 
-fig, ax = plt.subplots(figsize = (10,7))
-wedges, texts, autotexts = ax.pie(sizeByDonationAmount,
-                                autopct = lambda pct: func(pct, sizeByDonationAmount), 
-                                explode=explode,
-                                labels = labels,
+
+
+# Plot by top Careers
+trumpCareers = careerOutput['trump']
+bidenCareers = careerOutput['biden']
+
+# Sort based on amount
+trumpCareers= (sorted(trumpCareers.items(), key=lambda item: item[1][1], reverse=True))
+bidenCareers= (sorted(bidenCareers.items(), key=lambda item: item[1][1], reverse=True)) 
+
+bidenTopCareerLabels= []
+bidenTopCareers = []
+
+trumpTopCareerLabels= []
+trumpTopCareers = []
+
+for i in range(9):
+    bidenTopCareerLabels.append(bidenCareers[i][0])
+    bidenTopCareers.append(bidenCareers[i][1][1])
+sumOther = 0;
+for i in range(9,len(bidenCareers)):
+    sumOther+=bidenCareers[i][1][1]
+bidenTopCareerLabels.append('other')
+bidenTopCareers.append(sumOther)
+for i in range(9):
+    trumpTopCareerLabels.append(trumpCareers[i][0])
+    trumpTopCareers.append(trumpCareers[i][1][1])
+sumOther = 0;
+for i in range(9,len(trumpCareers)):
+    sumOther+=trumpCareers[i][1][1]
+trumpTopCareerLabels.append('other')
+trumpTopCareers.append(sumOther)
+
+fig3, (ax3, ax4) = plt.subplots(1, 2)
+fig3.subtitle = "Top 10 Careers by donation amount"
+wedges, texts, autotexts = ax3.pie(trumpTopCareers,
+                                autopct = lambda pct: func(pct, trumpTopCareers), 
+                                labels = trumpTopCareerLabels,
                                 shadow=True,
-                                colors=colors,
                                 startangle=0,
                                 wedgeprops = wp,
                                 textprops = dict(color ="#00221C"))
-# ax.legend(wedges, labels,
-#             title="Donation Amount to DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)",
+ax3.set_title(trumpTitle) 
+# ax3.legend(wedges, trumpTopCareerLabels,
+#             title=trumpTitle,
 #             loc="center left",
 #             bbox_to_anchor =(1,0,0.5,1))
+
 plt.setp(autotexts, size = 8, weight ="bold") 
-ax.set_title("Individual Donations Totals Amount (split into industries) to DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)") 
+  
+wedges, texts, autotexts = ax4.pie(bidenTopCareers,
+                                autopct = lambda pct: func(pct, bidenTopCareers), 
+                                labels=bidenTopCareerLabels,
+                                shadow=True,
+                                startangle=0,
+                                wedgeprops = wp,
+                                textprops = dict(color ="#00221C"))
+ax4.set_title(bidenTitle) 
 
+plt.setp(autotexts, size = 8, weight ="bold") 
 
-"""
-# print("Sorted Dictionary by value: ", bidenIndustries)
-
-# The top elements will be at the bottom
-
+ax4.set_title(bidenTitle) 
+# ax4.legend(wedges, bidenTopCareerLabels,
+#             title=bidenTitle,
+#             loc="center left",
+#             bbox_to_anchor =(1,0,0.5,1))
+# show plot 
+plt.show() 

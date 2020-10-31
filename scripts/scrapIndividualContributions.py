@@ -2,19 +2,27 @@
 
 from bs4 import BeautifulSoup
 import lxml
+import requests
+import json
 
 # Get the links to the contributions for each month
 bidenSource = json.load(open("data/bidenReports.json"))
 trumpSource = json.load(open("data/trumpReports.json"))
 
 # loop through the months:
+for year in bidenSource:
+    for month in range(1,12):
+        if 'link' in bidenSource[year][str(month)]:
+            # Get the link
+            link = bidenSource[year][str(month)]['link']
+            source = requests.get(link,timeout=300).text;
 
-for i in range(12){
-    if 'link' in bidenSource[str(i)]:
-        # Get the link
-        url = bidenSource[str(i)]['link']
-        
-}
+            soup = BeautifulSoup(source, 'lxml');
+            
+            table = soup.find('tbody',class_="tablebody reportTable");
+
+            print(table);
+
 
 
 def getIndustryFromWikiLink(wikiUrl):

@@ -24,7 +24,7 @@ import json
 
 
 # Get list of biden committees:
-bidenCommitteeFile = open("candidateInfo/HillaryCommittees.txt")
+bidenCommitteeFile = open("candidateInfo/BidenCommittees.txt")
 trumpCommitteeFile = open("candidateInfo/TrumpCommittees.txt")
 
 #An array of biden and trump committees
@@ -53,9 +53,9 @@ industries = defaultdict(list)
 # Make 500 api calls per minute
 
 #Open the file:
-indiDonationFile  = open("indiv16/itcont.txt", "r")
-trumpOutputFile = open("output/trumpOutput16.json","w")
-bidenOutputFile = open("output/hillaryOutput.json","w")
+indiDonationFile  = open("indiv20/itcont.txt", "r")
+trumpOutputFile = open("output/trumpOutput.json","w")
+bidenOutputFile = open("output/bidenOutput.json","w")
 
 calls_remaining = 500
 waiting_time = 50

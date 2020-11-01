@@ -12,7 +12,7 @@ The file TrumpOutput.json and BidenOutput.json contain the details (in terms of 
 
 """
 # Load the files for each candidate
-bidenFile = open("output/BidenOutput.json", "r")
+bidenFile = open("output/hillaryOutput.json", "r")
 trumpFile = open("output/trumpOutput.json", "r")
 
 bidenStats = json.load(bidenFile)

@@ -23,15 +23,27 @@ while True:
     occupation = data[12]
     if(data[0]==trumpCommittee or data[15]==trumpCommittee):
         if occupation in trumpCareers:
-            trumpCareers[occupation] = [trumpCareers[occupation][0]+1,trumpCareers[occupation][1]+int(data[14])]
+            if int(data[14]>0):
+                trumpCareers[occupation] = [trumpCareers[occupation][0]+1,trumpCareers[occupation][1]+int(data[14])]
+            else:
+                trumpCareers[occupation] = [trumpCareers[occupation][0]-1,trumpCareers[occupation][1]+int(data[14])]
         else:
-            trumpCareers[occupation] = [1,int(data[14])]
+            if int(data[14>0]):
+                trumpCareers[occupation] = [1,int(data[14])]
+            else:
+                trumpCareers[occupation] = [-1,int(data[14])]
     elif data[0]==bidenCommittee or data[15]==bidenCommittee or data[15]==bidenCommittee2:
         print(data[15])
         if occupation in bidenCareers:
-            bidenCareers[occupation] = [bidenCareers[occupation][0]+1,bidenCareers[occupation][1]+int(data[14])]
+            if int(data[14>0]):
+                bidenCareers[occupation] = [bidenCareers[occupation][0]+1,bidenCareers[occupation][1]+int(data[14])]
+            else:
+                bidenCareers[occupation] = [bidenCareers[occupation][0]-1,bidenCareers[occupation][1]+int(data[14])]
         else:
-            bidenCareers[occupation] = [1,int(data[14])]
+            if int(data[14>0]):
+                bidenCareers[occupation] = [1,int(data[14])]
+            else:
+                bidenCareers[occupation] = [-1,int(data[14])]
 
 output = defaultdict(list)
 

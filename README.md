@@ -57,6 +57,8 @@ For each candidate, I calculated the total sum, and number of donations from a p
 
 ## Results
 Preliminary results indicate that there is a very large divide between the kinds of donors that both presidential candidates got. 
-Trump had a larger share of contributors that were retired than did biden. Biden, on the other hand, had a larger share of donors who were
+Trump had a larger share of contributors that were retired than did biden. Biden, on the other hand, had a larger share of donors who were are unemployed when compared to Trump. So much have these proportions changed that the divide from the 2016 election cycle is very evident.
+<br/><br/>
+I have outlined a report of [the analysis here.](Campaign_Finance_Data_Research_Report.pdf)
 <hr/>
 <sup>1</sup>: Individual Contribution definition from [FEC](https://www.fec.gov/introduction-campaign-finance/how-to-research-public-records/individual-contributions/) 

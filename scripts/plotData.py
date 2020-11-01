@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np 
 from collections import defaultdict
 #import the output file
-consolidatedOutputFile = open('output/consolidatedOutput.json','r')
+consolidatedOutputFile = open('output/consolidatedOutput16.json','r')
 careerOutput = json.load(open('output/donationsbyCareer.json','r'))
 
 results = json.load(consolidatedOutputFile)
@@ -129,65 +129,65 @@ plt.setp(autotexts, size = 12, weight ="bold")
 
 
 
-# Plot by top Careers
-trumpCareers = careerOutput['trump']
-bidenCareers = careerOutput['hillary']
+# # Plot by top Careers
+# trumpCareers = careerOutput['trump']
+# bidenCareers = careerOutput['hillary']
 
-# Sort based on amount
-trumpCareers= (sorted(trumpCareers.items(), key=lambda item: item[1][1], reverse=True))
-bidenCareers= (sorted(bidenCareers.items(), key=lambda item: item[1][1], reverse=True)) 
+# # Sort based on amount
+# trumpCareers= (sorted(trumpCareers.items(), key=lambda item: item[1][1], reverse=True))
+# bidenCareers= (sorted(bidenCareers.items(), key=lambda item: item[1][1], reverse=True)) 
 
-bidenTopCareerLabels= []
-bidenTopCareers = []
+# bidenTopCareerLabels= []
+# bidenTopCareers = []
 
-trumpTopCareerLabels= []
-trumpTopCareers = []
+# trumpTopCareerLabels= []
+# trumpTopCareers = []
 
-for i in range(9):
-    bidenTopCareerLabels.append(bidenCareers[i][0])
-    bidenTopCareers.append(bidenCareers[i][1][1])
-sumOther = 0;
-for i in range(9,len(bidenCareers)):
-    sumOther+=bidenCareers[i][1][1]
-bidenTopCareerLabels.append('other')
-bidenTopCareers.append(sumOther)
-for i in range(9):
-    trumpTopCareerLabels.append(trumpCareers[i][0])
-    trumpTopCareers.append(trumpCareers[i][1][1])
-sumOther = 0;
-for i in range(9,len(trumpCareers)):
-    sumOther+=trumpCareers[i][1][1]
-trumpTopCareerLabels.append('other')
-trumpTopCareers.append(sumOther)
+# for i in range(9):
+#     bidenTopCareerLabels.append(bidenCareers[i][0])
+#     bidenTopCareers.append(bidenCareers[i][1][1])
+# sumOther = 0;
+# for i in range(9,len(bidenCareers)):
+#     sumOther+=bidenCareers[i][1][1]
+# bidenTopCareerLabels.append('other')
+# bidenTopCareers.append(sumOther)
+# for i in range(9):
+#     trumpTopCareerLabels.append(trumpCareers[i][0])
+#     trumpTopCareers.append(trumpCareers[i][1][1])
+# sumOther = 0;
+# for i in range(9,len(trumpCareers)):
+#     sumOther+=trumpCareers[i][1][1]
+# trumpTopCareerLabels.append('other')
+# trumpTopCareers.append(sumOther)
 
-fig3, (ax3, ax4) = plt.subplots(1, 2)
-fig3.subtitle = "Top 10 Careers by donation amount"
-wedges, texts, autotexts = ax3.pie(trumpTopCareers,
-                                autopct = lambda pct: func(pct, trumpTopCareers), 
-                                labels = trumpTopCareerLabels,
-                                shadow=True,
-                                startangle=0,
-                                wedgeprops = wp,
-                                textprops = dict(color ="#00221C"))
-ax3.set_title(trumpTitle) 
+# fig3, (ax3, ax4) = plt.subplots(1, 2)
+# fig3.subtitle = "Top 10 Careers by donation amount"
+# wedges, texts, autotexts = ax3.pie(trumpTopCareers,
+#                                 autopct = lambda pct: func(pct, trumpTopCareers), 
+#                                 labels = trumpTopCareerLabels,
+#                                 shadow=True,
+#                                 startangle=0,
+#                                 wedgeprops = wp,
+#                                 textprops = dict(color ="#00221C"))
+# ax3.set_title(trumpTitle) 
 
-plt.setp(autotexts, size = 12, weight ="bold") 
+# plt.setp(autotexts, size = 12, weight ="bold") 
   
-wedges, texts, autotexts = ax4.pie(bidenTopCareers,
-                                autopct = lambda pct: func(pct, bidenTopCareers), 
-                                labels=bidenTopCareerLabels,
-                                shadow=True,
-                                startangle=0,
-                                wedgeprops = wp,
-                                textprops = dict(color ="#00221C"))
-ax4.set_title(bidenTitle) 
+# wedges, texts, autotexts = ax4.pie(bidenTopCareers,
+#                                 autopct = lambda pct: func(pct, bidenTopCareers), 
+#                                 labels=bidenTopCareerLabels,
+#                                 shadow=True,
+#                                 startangle=0,
+#                                 wedgeprops = wp,
+#                                 textprops = dict(color ="#00221C"))
+# ax4.set_title(bidenTitle) 
 
-plt.setp(autotexts, size = 12, weight ="bold") 
+# plt.setp(autotexts, size = 12, weight ="bold") 
 
-ax4.set_title(bidenTitle) 
-# ax4.legend(wedges, bidenTopCareerLabels,
-#             title=bidenTitle,
-#             loc="center left",
-#             bbox_to_anchor =(1,0,0.5,1))
+# ax4.set_title(bidenTitle) 
+# # ax4.legend(wedges, bidenTopCareerLabels,
+# #             title=bidenTitle,
+# #             loc="center left",
+# #             bbox_to_anchor =(1,0,0.5,1))
 # show plot 
 plt.show() 

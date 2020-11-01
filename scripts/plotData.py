@@ -11,13 +11,13 @@ import matplotlib.pyplot as plt
 import numpy as np 
 from collections import defaultdict
 #import the output file
-consolidatedOutputFile = open('output/consolidatedOutput16.json','r')
+consolidatedOutputFile = open('output/consolidatedOutput.json','r')
 # careerOutput = json.load(open('output/donationsbyCareer.json','r'))
 
 results = json.load(consolidatedOutputFile)
 
 trumpTitle = "DONALD J. TRUMP FOR PRESIDENT, INC. (C00580100)"
-bidenTitle = "HILLARY CLINTON FOR PRESIDENT (C00431569)"
+bidenTitle = "BIDEN FOR PRESIDENT (C00431569)"
 # A pie chart for each candidate
 labels = 'employed','unemployed','retired', 'unspecified'
 trumpUnemployed = results['trump']['unemployedContributions']
@@ -28,10 +28,10 @@ trumpSizeByNoDonations = [trumpEmployed[0],trumpUnemployed[0],trumpRetired[0], t
 trumpSizeByDonationAmount = [trumpEmployed[1],trumpUnemployed[1],trumpRetired[1],trumpUnspecified[1]]
 
 #Get Biden Stats
-bidenUnemployed = results['hillary']['unemployedContributions']
-bidenRetired = results['hillary']['retiredContributions']
-bidenUnspecified = results['hillary']['unspecifiedContributions']
-bidenEmployed = [results['hillary']['numberOfContributions']-(bidenUnemployed[0]+bidenRetired[0]),results['hillary']['TotalContributions']-(bidenUnemployed[1]+bidenRetired[1])]
+bidenUnemployed = results['biden']['unemployedContributions']
+bidenRetired = results['biden']['retiredContributions']
+bidenUnspecified = results['biden']['unspecifiedContributions']
+bidenEmployed = [results['biden']['numberOfContributions']-(bidenUnemployed[0]+bidenRetired[0]),results['biden']['TotalContributions']-(bidenUnemployed[1]+bidenRetired[1])]
 bidenSizeByNoDonations = [bidenEmployed[0],bidenUnemployed[0],bidenRetired[0],bidenUnspecified[0]]
 bidenSizeByDonationAmount = [bidenEmployed[1],bidenUnemployed[1],bidenRetired[1],bidenUnspecified[1]]
 
@@ -51,6 +51,7 @@ fig.subtitle = "Donations Totals Amount"
 wedges, texts, autotexts = ax1.pie(trumpSizeByDonationAmount,
                                 autopct = lambda pct: func(pct, trumpSizeByDonationAmount), 
                                 explode=explode,
+                                shadow=True,
                                 colors=colors,
                                 startangle=0,
                                 wedgeprops = wp,
@@ -63,6 +64,7 @@ ax1.legend(wedges, labels,
 wedges, texts, autotexts = ax2.pie(bidenSizeByDonationAmount,
                                 autopct = lambda pct: func(pct, bidenSizeByDonationAmount), 
                                 explode=explode,
+                                shadow=True,
                                 colors=colors,
                                 startangle=0,
                                 wedgeprops = wp,

@@ -19,6 +19,6 @@
   "homepage": "https://github.com/lbugasu/fec-data-analysis-2020#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "got": "^10.4.0"
+    "got": "^12.5.3"
   }
 }
